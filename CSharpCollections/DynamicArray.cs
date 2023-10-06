@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace CSharpCollections
@@ -72,6 +73,49 @@ namespace CSharpCollections
             return PopBack();
         }
 
+        public void DeleteAllItemsWithValue(T value)
+        {
+            DeleteCertainItemsWithValue(value, Size);
+        }
+
+        public void DeleteCertainItemsWithValue(T value, int repeats)
+        {
+            if (repeats <= 0) return;
+            int count = 0;
+            int start = 0;
+            for (int i = 0; i < Size; ++i)
+            {
+                if (_internalArray[i].Equals(value))
+                {
+                    start = i;
+                    break;
+                }
+            }
+            for (int i = start; i < Size; ++i)
+            {
+                if (_internalArray[i].Equals(value) && count < repeats)
+                {
+                    count += 1;
+                }
+                else
+                {
+                    _internalArray[i - count] = _internalArray[i];
+                }
+            }
+            Size -= count;
+        }
+
+        public void MakeEmpty()
+        {
+            Size = 0;
+        }
+
+        public void Clear()
+        {
+            MakeEmpty();
+            _CreateNewInternalArray();
+        }
+
         public void InsertAfter(int index, T item)
         {
             PushBack(item);
@@ -101,6 +145,14 @@ namespace CSharpCollections
             for (; from != to; from += k)
             {
                 SwapItems(from, from + k);
+            }
+        }
+
+        public void Reverse()
+        {
+            for (int i = 0; i < Size / 2; ++i)
+            {
+                SwapItems(i, -1 - i);
             }
         }
 

@@ -9,17 +9,16 @@ namespace Tets
 {
     internal class Program
     {
+        static bool srtrule(object left, object right)
+        {
+            return (double)left > (double)right;
+        }
+
         static void Main(string[] args)
         {
-            var stringArray = Console.ReadLine().Split();
-            var arr = new DynamicArray<string>(stringArray);
-
-            while (arr.Size != 10)
-            {
-                arr.InsertAfter(0, Console.ReadLine());
-                Console.WriteLine(arr);
-            }
-            
+            var arr = new DynamicArray<double>(-87432, -74, 1, 2, 3, 8, 4, 5, 6, 7, 8);
+            arr.Reverse();
+            Console.WriteLine(arr);
         }
     }
 }
