@@ -13,10 +13,13 @@ namespace Tets
         {
             var stringArray = Console.ReadLine().Split();
             var arr = new DynamicArray<string>(stringArray);
-            for (int i = 1; i <= arr.Size; ++i)
+
+            while (arr.Size != 10)
             {
-                Console.Write(arr[-i] + "; ");
+                arr.InsertAfter(0, Console.ReadLine());
+                Console.WriteLine(arr);
             }
+            
         }
     }
 }

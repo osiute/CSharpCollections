@@ -23,6 +23,16 @@ namespace CSharpCollections
             _internalArray = values;
         }
 
+        public override string ToString()
+        {
+            string result = "{";
+            for (int i = 0; i < Size; ++i)
+            {
+                string postfix = i == Size - 1 ? "" : ", ";
+                result += $"{_internalArray[i]}{postfix}";
+            }
+            return result + "}";
+        }
 
         public T this[int index]
         {
@@ -37,13 +47,14 @@ namespace CSharpCollections
                 _internalArray[index] = value;
             }
         }
-        public void PushBack(T value)
+
+        public void PushBack(T item)
         {
             if (_IsInternalFull())
             {
                 _ExpandInternalArray();
             }
-            _internalArray[Size++] = value;
+            _internalArray[Size++] = item;
         }
 
         public T PopBack()
@@ -53,6 +64,44 @@ namespace CSharpCollections
                 throw new Exception("Delete from empty dynamic array attempt.");
             }
             return _internalArray[--Size];
+        }
+
+        public T DeleteAndGetItem(int index)
+        {
+            CyclicShift(from: index, to: -1);
+            return PopBack();
+        }
+
+        public void InsertAfter(int index, T item)
+        {
+            PushBack(item);
+            CyclicShift(-1, index + 1);
+        }
+        
+        public void InsertBefore(int index, T item)
+        {
+            PushBack(item);
+            CyclicShift(-1, index);
+        }
+
+        public void SwapItems(int i, int j)
+        {
+            _CheckIndexOrError(ref i);
+            _CheckIndexOrError(ref j);
+            T temp = _internalArray[i];
+            _internalArray[i] = _internalArray[j];
+            _internalArray[j] = temp;
+        }
+        
+        public void CyclicShift(int from, int to)
+        {
+            _CheckIndexOrError(ref from);
+            _CheckIndexOrError(ref to);
+            int k = from > to ? -1 : +1;
+            for (; from != to; from += k)
+            {
+                SwapItems(from, from + k);
+            }
         }
 
         public bool IsEmpty()
