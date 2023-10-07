@@ -155,6 +155,59 @@ namespace CSharpCollections
                 SwapItems(i, -1 - i);
             }
         }
+        
+        public bool IsSorted(Comparison<T> comparison, bool needReverse = false)
+        {
+            int k = needReverse ? -1 : 1;
+            for (int i = 1; i < Size; ++i)
+            {
+                T leftItem = _internalArray[i - 1];
+                T rightItem = _internalArray[i];
+                if (_IsIncorrectOrder(leftItem, rightItem, comparison, k))
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        public void Sort(Comparison<T> comparison, bool needReverse = false)
+        {
+            _Sort(leftIndex: 0, rightIndex: Size - 1,
+                comparison: comparison, needReverse: needReverse);
+        }
+
+        private void _Sort(int leftIndex, int rightIndex, 
+            Comparison<T> comparison, bool needReverse = false)
+        {
+            if (leftIndex >= rightIndex) return;
+            int border = _ScatterItemsForSort(leftIndex, rightIndex, comparison, needReverse);
+            _Sort(leftIndex, border - 1, comparison, needReverse);
+            _Sort(border, rightIndex, comparison, needReverse);
+        }
+
+        private int _ScatterItemsForSort(int i, int j,
+            Comparison<T> comparison, bool needReverse = false)
+        {
+            int k = needReverse ? -1 : 1;
+            T pivot = _internalArray[(i + j) / 2];
+            while(i <= j)
+            {
+                while (_IsIncorrectOrder(pivot, _internalArray[i], comparison, k)) ++i;
+                while (_IsIncorrectOrder(_internalArray[j], pivot, comparison, k)) --j;
+                if (i <= j)
+                {
+                    SwapItems(i++, j--);
+                }
+            }
+            return i;
+        }
+
+        private bool _IsIncorrectOrder(T leftItem, T rightItem,
+            Comparison<T> comparison, int k)
+        {
+            return comparison(leftItem, rightItem) * k > 0;
+        }
 
         public bool IsEmpty()
         {

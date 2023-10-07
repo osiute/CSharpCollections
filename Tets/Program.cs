@@ -3,22 +3,44 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Schema;
 using CSharpCollections;
 
 namespace Tets
 {
     internal class Program
     {
-        static bool srtrule(object left, object right)
+        static void Test()
         {
-            return (double)left > (double)right;
+            var arr = new DynamicArray<int>();
+            Random rand = new Random();
+            foreach (bool needReverse in new bool[] { false, true })
+            {
+                for (int testCase = 1; testCase <= 200; ++testCase)
+                {
+                    int size = rand.Next(0, 1000);
+                    for (int i = 0; i < size; ++i)
+                    {
+                        arr.PushBack(rand.Next());
+                    }
+                    arr.Sort((x, y) => x.CompareTo(y), needReverse);
+                    if (arr.IsSorted((x, y) => x.CompareTo(y), needReverse))
+                    {
+                        Console.WriteLine($"TestCase#{testCase} was successfully completed!");
+                    }
+                    else
+                    {
+                        throw new Exception($"TestCase#{testCase} was NOT successfully completed!");
+                    }
+                }
+                Console.WriteLine("needReverse = " + needReverse + " was completed!");
+                Console.ReadLine();
+            }
         }
 
         static void Main(string[] args)
         {
-            var arr = new DynamicArray<double>(-87432, -74, 1, 2, 3, 8, 4, 5, 6, 7, 8);
-            arr.Reverse();
-            Console.WriteLine(arr);
+            Test();
         }
     }
 }
