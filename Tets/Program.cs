@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Schema;
 using CSharpCollections;
 
-namespace Tets
+namespace Test
 {
     internal class Program
     {
@@ -41,11 +42,12 @@ namespace Tets
 
         static void Main(string[] args)
         {
-            var arr = new DynamicArray<string>(Console.ReadLine().Split());
-            Console.WriteLine(arr.IsSorted());
-            arr.Sort();
-            Console.WriteLine(arr);
-            Console.WriteLine(arr.IsSorted());
+            MyStack<string> stack = new MyStack<string>();
+            for (int i = 0; i < 5; ++i)
+            {
+                stack.Push(Console.ReadLine());
+            }
+            Console.WriteLine(stack);
         }
     }
 }
