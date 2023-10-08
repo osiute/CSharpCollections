@@ -8,12 +8,17 @@ using System.Threading.Tasks;
 
 namespace CSharpCollections
 {
-    public class MyStack<T>
+    public class Stack<T>
     {
-        private Node<T> head;
+        private const string CLASSNAME = "Stack";
         private Node<T> tail;
         public int Size { get; private set; }
-        public T Top { get { return tail.value; } }
+        public T Top {
+            get {
+                if (IsEmpty()) throw new Exception($"{CLASSNAME} is empty!");
+                return tail.value; 
+            } 
+        }
 
         private class Node<NestedT>
         {
@@ -21,7 +26,7 @@ namespace CSharpCollections
             internal Node<NestedT> previous;
         }
 
-        public MyStack(params T[] values)
+        public Stack(params T[] values)
         {
             Size = 0;
             foreach (T value in values)
@@ -34,7 +39,7 @@ namespace CSharpCollections
         {
             if (IsEmpty())
             {
-                tail = head = new Node<T>
+                tail = new Node<T>
                 {
                     value = value,
                     previous = null
@@ -55,12 +60,17 @@ namespace CSharpCollections
         {
             if (IsEmpty())
             {
-                throw new Exception("Attempt to pop from empty stack");
+                throw new Exception($"Attempt to pop from empty {CLASSNAME}");
             }
-            --Size;
             T result = Top;
             tail = tail.previous;
+            --Size;
             return result;
+        }
+
+        public void Clear()
+        {
+            Size = 0;
         }
         
         public bool IsEmpty()

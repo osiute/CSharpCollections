@@ -11,7 +11,7 @@ namespace Test
 {
     internal class Program
     {
-        static void Test()
+        static void TestDynamicArray()
         {
             var arr = new DynamicArray<int>();
             Random rand = new Random();
@@ -42,12 +42,13 @@ namespace Test
 
         static void Main(string[] args)
         {
-            MyStack<string> stack = new MyStack<string>();
-            for (int i = 0; i < 5; ++i)
+            var list = new CSharpCollections.LinkedList<int>(1, 2, 3, -4, 5, -6, -7);
+            Console.WriteLine(list.Size);
+            while (!list.IsEmpty())
             {
-                stack.Push(Console.ReadLine());
+                Console.WriteLine(list.PopTail());
             }
-            Console.WriteLine(stack);
+            Console.WriteLine(list.Size);
         }
     }
 }
