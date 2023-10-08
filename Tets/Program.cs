@@ -18,13 +18,13 @@ namespace Tets
             {
                 for (int testCase = 1; testCase <= 200; ++testCase)
                 {
-                    int size = rand.Next(0, 1000);
+                    int size = rand.Next(0, (int)Math.Pow(10, 5));
                     for (int i = 0; i < size; ++i)
                     {
                         arr.PushBack(rand.Next());
                     }
-                    arr.Sort((x, y) => x.CompareTo(y), needReverse);
-                    if (arr.IsSorted((x, y) => x.CompareTo(y), needReverse))
+                    arr.Sort(needReverse);
+                    if (arr.IsSorted(needReverse))
                     {
                         Console.WriteLine($"TestCase#{testCase} was successfully completed!");
                     }
@@ -32,6 +32,7 @@ namespace Tets
                     {
                         throw new Exception($"TestCase#{testCase} was NOT successfully completed!");
                     }
+                    arr.MakeEmpty();
                 }
                 Console.WriteLine("needReverse = " + needReverse + " was completed!");
                 Console.ReadLine();
@@ -40,7 +41,11 @@ namespace Tets
 
         static void Main(string[] args)
         {
-            Test();
+            var arr = new DynamicArray<string>(Console.ReadLine().Split());
+            Console.WriteLine(arr.IsSorted());
+            arr.Sort();
+            Console.WriteLine(arr);
+            Console.WriteLine(arr.IsSorted());
         }
     }
 }
