@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Enumerators.cs" />
     <Compile Include="LinkedList.cs" />
     <Compile Include="Stack.cs" />
     <Compile Include="DynamicArray.cs" />

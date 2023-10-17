@@ -42,13 +42,14 @@ namespace Test
 
         static void Main(string[] args)
         {
-            var list = new CSharpCollections.LinkedList<int>(1, 2, 3, -4, 5, -6, -7);
-            Console.WriteLine(list.Size);
-            while (!list.IsEmpty())
+            var list = new CSharpCollections.LinkedList<int>(-8, 432, 89, -7, 8, -8, -8, 4238, -8, 4832791, -0, 0, -8);
+            Console.WriteLine("The length of linked list is " + list.Size);
+            list.DeleteItems(-8, 4);
+            foreach(int num in list)
             {
-                Console.WriteLine(list.PopTail());
+                Console.WriteLine(num);
             }
-            Console.WriteLine(list.Size);
+            Console.WriteLine(list);
         }
     }
 }
