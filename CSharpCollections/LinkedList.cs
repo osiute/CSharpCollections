@@ -56,6 +56,59 @@ namespace CSharpCollections
             return result;
         }
 
+        public void Reverse()
+        {
+            Node<T> leftNode = head, rightNode = tail;
+            for (int i = 0; i < Size / 2; ++i)
+            {
+                SwapValues(leftNode, rightNode);
+                leftNode = leftNode.next;
+                rightNode = rightNode.previous;
+            }
+        }
+
+        public void Sort(Comparison<T> comparison, bool reverse = false)
+        {
+            if (Size <= 1) return;
+            int leftIndex = 0, rightIndex = Size - 1;
+            Node<T> leftItem = head; Node<T> rightItem = tail;
+            QuickSort(leftIndex, leftItem, rightIndex, rightItem, comparison, reverse);
+        }
+
+        private void QuickSort(int leftIndex, Node<T> leftItem, int rightIndex, Node<T> rightItem,
+            Comparison<T> comparison, bool reverse)
+        {
+            if (leftIndex >= rightIndex) return;
+            int sign = reverse ? -1 : +1;
+            int i = leftIndex, j = rightIndex;
+            Node<T> pivotNode = leftItem, comparitionNode = rightItem;
+            while (i < j)
+            {
+                T pivot = pivotNode.value, comparitionValue = comparitionNode.value;
+                if (comparison(pivot, comparitionValue) * sign > 0)
+                {
+                    SwapValues(pivotNode, comparitionNode);
+                    SwapValues(comparitionNode, pivotNode.next);
+                    pivotNode = pivotNode.next;
+                    ++i;
+                }
+                else
+                {
+                    comparitionNode = comparitionNode.previous;
+                    --j;
+                }
+            }
+            QuickSort(leftIndex, leftItem, i - 1, pivotNode.previous, comparison, reverse);
+            QuickSort(i + 1, pivotNode.next, rightIndex, rightItem, comparison, reverse);
+        }
+        
+        private void SwapValues(Node<T> node1, Node<T> node2)
+        {
+            T temp = node1.value;
+            node1.value = node2.value;
+            node2.value = temp;
+        }
+
         public void DeleteAllItemsWithValue(T value)
         {
             Node<T> currentNode = head;
@@ -101,6 +154,23 @@ namespace CSharpCollections
         {
             tail = head = null;
             Size = 0;
+        }
+
+        public bool IsSorted(Comparison<T> comparison, bool reverse = false)
+        {
+            Node<T> currentNode = head;
+            int sign = reverse ? -1 : +1;
+            for (int i = 1; i < Size; ++i)
+            {
+                T currentValue = currentNode.value;
+                T nextValue = currentNode.next.value;
+                if (comparison(currentValue, nextValue) * sign > 0)
+                {
+                    return false;
+                }
+                currentNode = currentNode.next;
+            }
+            return true;
         }
 
         public bool IsEmpty()

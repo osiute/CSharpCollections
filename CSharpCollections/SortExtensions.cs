@@ -114,5 +114,112 @@ namespace CSharpCollections
         {
             return arr.IsSorted((leftItem, rightItem) => leftItem.CompareTo(rightItem), reverse);
         }
+        
+        public static void Sort(this CSharpCollections.LinkedList<byte> list, bool reverse = false)
+        {
+            list.Sort((leftItem, rightItem) => leftItem.CompareTo(rightItem), reverse);
+        }
+        public static void Sort(this CSharpCollections.LinkedList<SByte> list, bool reverse = false)
+        {
+            list.Sort((leftItem, rightItem) => leftItem.CompareTo(rightItem), reverse);
+        }
+        public static void Sort(this CSharpCollections.LinkedList<short> list, bool reverse = false)
+        {
+            list.Sort((leftItem, rightItem) => leftItem.CompareTo(rightItem), reverse);
+        }
+        public static void Sort(this CSharpCollections.LinkedList<UInt16> list, bool reverse = false)
+        {
+            list.Sort((leftItem, rightItem) => leftItem.CompareTo(rightItem), reverse);
+        }
+
+        public static void Sort(this CSharpCollections.LinkedList<int> list, bool reverse = false)
+        {
+            list.Sort((leftItem, rightItem) => leftItem.CompareTo(rightItem), reverse);
+        }
+        public static void Sort(this CSharpCollections.LinkedList<UInt32> list, bool reverse = false)
+        {
+            list.Sort((leftItem, rightItem) => leftItem.CompareTo(rightItem), reverse);
+        }
+        public static void Sort(this CSharpCollections.LinkedList<long> list, bool reverse = false)
+        {
+            list.Sort((leftItem, rightItem) => leftItem.CompareTo(rightItem), reverse);
+        }
+        public static void Sort(this CSharpCollections.LinkedList<UInt64> list, bool reverse = false)
+        {
+            list.Sort((leftItem, rightItem) => leftItem.CompareTo(rightItem), reverse);
+        }
+        public static void Sort(this CSharpCollections.LinkedList<float> list, bool reverse = false)
+        {
+            list.Sort((leftItem, rightItem) => leftItem.CompareTo(rightItem), reverse);
+        }
+        public static void Sort(this CSharpCollections.LinkedList<double> list, bool reverse = false)
+        {
+            list.Sort((leftItem, rightItem) => leftItem.CompareTo(rightItem), reverse);
+        }
+        public static void Sort(this CSharpCollections.LinkedList<decimal> list, bool reverse = false)
+        {
+            list.Sort((leftItem, rightItem) => leftItem.CompareTo(rightItem), reverse);
+        }
+        public static void Sort(this CSharpCollections.LinkedList<char> list, bool reverse = false)
+        {
+            list.Sort((leftItem, rightItem) => leftItem.CompareTo(rightItem), reverse);
+        }
+        public static void Sort(this CSharpCollections.LinkedList<string> list, bool reverse = false)
+        {
+            list.Sort((leftItem, rightItem) => leftItem.CompareTo(rightItem), reverse);
+        }
+        public static bool IsSorted(this CSharpCollections.LinkedList<byte> list, bool reverse = false)
+        {
+            return list.IsSorted((leftItem, rightItem) => leftItem.CompareTo(rightItem), reverse);
+        }
+        public static bool IsSorted(this CSharpCollections.LinkedList<SByte> list, bool reverse = false)
+        {
+            return list.IsSorted((leftItem, rightItem) => leftItem.CompareTo(rightItem), reverse);
+        }
+        public static bool IsSorted(this CSharpCollections.LinkedList<short> list, bool reverse = false)
+        {
+            return list.IsSorted((leftItem, rightItem) => leftItem.CompareTo(rightItem), reverse);
+        }
+        public static bool IsSorted(this CSharpCollections.LinkedList<UInt16> list, bool reverse = false)
+        {
+            return list.IsSorted((leftItem, rightItem) => leftItem.CompareTo(rightItem), reverse);
+        }
+
+        public static bool IsSorted(this CSharpCollections.LinkedList<int> list, bool reverse = false)
+        {
+            return list.IsSorted((leftItem, rightItem) => leftItem.CompareTo(rightItem), reverse);
+        }
+        public static bool IsSorted(this CSharpCollections.LinkedList<UInt32> list, bool reverse = false)
+        {
+            return list.IsSorted((leftItem, rightItem) => leftItem.CompareTo(rightItem), reverse);
+        }
+        public static bool IsSorted(this CSharpCollections.LinkedList<long> list, bool reverse = false)
+        {
+            return list.IsSorted((leftItem, rightItem) => leftItem.CompareTo(rightItem), reverse);
+        }
+        public static bool IsSorted(this CSharpCollections.LinkedList<UInt64> list, bool reverse = false)
+        {
+            return list.IsSorted((leftItem, rightItem) => leftItem.CompareTo(rightItem), reverse);
+        }
+        public static bool IsSorted(this CSharpCollections.LinkedList<float> list, bool reverse = false)
+        {
+            return list.IsSorted((leftItem, rightItem) => leftItem.CompareTo(rightItem), reverse);
+        }
+        public static bool IsSorted(this CSharpCollections.LinkedList<double> list, bool reverse = false)
+        {
+            return list.IsSorted((leftItem, rightItem) => leftItem.CompareTo(rightItem), reverse);
+        }
+        public static bool IsSorted(this CSharpCollections.LinkedList<decimal> list, bool reverse = false)
+        {
+            return list.IsSorted((leftItem, rightItem) => leftItem.CompareTo(rightItem), reverse);
+        }
+        public static bool IsSorted(this CSharpCollections.LinkedList<char> list, bool reverse = false)
+        {
+            return list.IsSorted((leftItem, rightItem) => leftItem.CompareTo(rightItem), reverse);
+        }
+        public static bool IsSorted(this CSharpCollections.LinkedList<string> list, bool reverse = false)
+        {
+            return list.IsSorted((leftItem, rightItem) => leftItem.CompareTo(rightItem), reverse);
+        }
     }
 }
